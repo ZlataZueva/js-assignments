@@ -247,15 +247,12 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    throw new Error('Not implemented');
-	function rot13 (match){
-		let code = match.charCodeAt(0);
-	   if ( code >= 'A'.charCodeAt(0) && code <= 'M'.charCodeAt(0) || code >= 'a'.charCodeAt(0) && code <= 'm'.charCodeAt(0)){
-			return String.fromCharCode(code + 13);
-		}
-		else return String.fromCharCode(code - 13);
-	}
-	return str.replace('/[a-zA-Z]/',rot13);
+    //throw new Error('Not implemented');
+	var input     = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    var output    = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+    var index     = x => input.indexOf(x);
+    var translate = x => index(x) > -1 ? output[index(x)] : x;
+	return str.split('').map(translate).join('');
 }
 
 /**
