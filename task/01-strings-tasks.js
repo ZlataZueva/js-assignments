@@ -22,7 +22,8 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(value1, value2) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
+	return value1+value2;
 }
 
 
@@ -38,7 +39,8 @@ function concatenateStrings(value1, value2) {
  *   ''      => 0
  */
 function getStringLength(value) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
+	return value.length;
 }
 
 /**
@@ -55,7 +57,8 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
+	return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -69,7 +72,8 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-    throw new Error('Not implemented');
+   // throw new Error('Not implemented');
+	return value.substring(7,value.length-1);
 }
 
 
@@ -84,7 +88,8 @@ function extractNameFromTemplate(value) {
  *   'cat'       => 'c'
  */
 function getFirstChar(value) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
+	return value[0];
 }
 
 /**
@@ -99,7 +104,8 @@ function getFirstChar(value) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
+	return value.trim();
 }
 
 /**
@@ -114,7 +120,8 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
+	return value.repeat(count);
 }
 
 /**
@@ -130,7 +137,8 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
+	return str.replace(value,"");
 }
 
 /**
@@ -145,7 +153,8 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
+	return str.substring(1,str.length-1);
 }
 
 
@@ -160,7 +169,8 @@ function unbracketTag(str) {
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
 function convertToUpperCase(str) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
+	return str.toUpperCase();
 }
 
 /**
@@ -174,7 +184,8 @@ function convertToUpperCase(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
+	return str.split(';');
 }
 
 /**
@@ -201,7 +212,22 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
+	let str='';
+	let hor_line = '─';
+	let lt_cor = '┌';
+	let rt_cor = '┐';
+	let ver_line = '│';
+	let lb_cor = '└';
+	let rb_cor = '┘';
+	let space = ' ';
+	if (width>1 && height>1){
+		let line=ver_line+space.repeat(width-2)+ver_line+'\n';
+		str+=lt_cor+hor_line.repeat(width-2)+rt_cor+'\n';
+		str+=line.repeat(height-2)+lb_cor;
+		str+=hor_line.repeat(width-2)+rb_cor+'\n';
+	}
+	return str;
 }
 
 
@@ -222,6 +248,14 @@ function getRectangleString(width, height) {
  */
 function encodeToRot13(str) {
     throw new Error('Not implemented');
+	function rot13 (match){
+		let code = match.charCodeAt(0);
+	   if ( code >= 'A'.charCodeAt(0) && code <= 'M'.charCodeAt(0) || code >= 'a'.charCodeAt(0) && code <= 'm'.charCodeAt(0)){
+			return String.fromCharCode(code + 13);
+		}
+		else return String.fromCharCode(code - 13);
+	}
+	return str.replace('/[a-zA-Z]/',rot13);
 }
 
 /**
@@ -238,13 +272,16 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
+	if (value !== null){
+	return (typeof value === "string" || typeof value == "object" && value.constructor === String);}
+	return false;
 }
 
 
 /**
  * Возвращает id игровой карты
- * 
+ * ч
  * Исходная доска игровых карт представлена следующим порядком строк:
  * 
  *  'A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
@@ -267,7 +304,12 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
+	let arr = ['A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
+		   'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
+ 		   'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
+ 		   'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'];
+	return arr.indexOf(value);
 }
 
 
