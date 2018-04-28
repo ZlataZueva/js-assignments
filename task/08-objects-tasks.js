@@ -61,6 +61,7 @@ function getJSON(obj) {
  */
 function fromJSON(proto, json) {
     return Object.assign(new proto.constructor(), JSON.parse(json));
+    
 }
 
 
